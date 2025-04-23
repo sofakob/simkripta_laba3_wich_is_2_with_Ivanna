@@ -28,6 +28,18 @@ def masive_for_shifr_Vigenera(alphabet, key):
 
     return arr
 
+def obchislenna_I(shifr, alfabet):
+    i=(sum_Nt(shifr, alfabet))/(len(shifr)*(len(shifr)-1))
+    return i
+
+
+def sum_Nt(shifr, alfabet):
+    sum_all_Nt=0
+    for i in alfabet:
+        Nt=shifr.count(i)
+        sum_all_Nt=sum_all_Nt+(Nt*(Nt-1))
+    return sum_all_Nt
+
 
 alphabet = "абвгдежзийклмнопрстуфхцчшщыьъэюя"
 r2="лю"
@@ -41,9 +53,27 @@ with open("input.txt", "r", encoding="utf-8") as file:
 with open("output.txt", "w"):
     pass 
 text_without_probelu=delete_fromtext_probel(text_for_work)
+text_shifr2=shifr_Vigenera(alphabet, text_without_probelu, r2)
+text_shifr3=shifr_Vigenera(alphabet, text_without_probelu, r3)
+text_shifr4=shifr_Vigenera(alphabet, text_without_probelu, r4)
+text_shifr5=shifr_Vigenera(alphabet, text_without_probelu, r5)
+text_shifrkey=shifr_Vigenera(alphabet, text_without_probelu, rkey)
+
+i_for_text=obchislenna_I(text_without_probelu, alphabet)
+i_for_2=obchislenna_I(text_shifr2, alphabet)
+i_for_3=obchislenna_I(text_shifr3, alphabet)
+i_for_4=obchislenna_I(text_shifr4, alphabet)
+i_for_5=obchislenna_I(text_shifr5, alphabet)
+i_for_key=obchislenna_I(text_shifrkey, alphabet)
+print(i_for_text)
+print(i_for_2)
+print(i_for_3)
+print(i_for_4)
+print(i_for_5)
+print(i_for_key)
 with open("output.txt", "a", encoding="utf-8") as file_for_write:
-    print("Текст с ключем лю", shifr_Vigenera(alphabet, text_without_probelu, r2), file=file_for_write)
-    print("Текст с ключем вес", shifr_Vigenera(alphabet, text_without_probelu, r3), file=file_for_write)
-    print("Текст с ключем поет", shifr_Vigenera(alphabet, text_without_probelu, r4), file=file_for_write)
-    print("Текст с ключем ключ", shifr_Vigenera(alphabet, text_without_probelu, r5), file=file_for_write)
-    print("Текст с ключем мандолинистка", shifr_Vigenera(alphabet, text_without_probelu, rkey), file=file_for_write)
+    print("Текст с ключем лю", text_shifr2, file=file_for_write)
+    print("Текст с ключем вес", text_shifr3, file=file_for_write)
+    print("Текст с ключем поет", text_shifr4, file=file_for_write)
+    print("Текст с ключем ключ", text_shifr5, file=file_for_write)
+    print("Текст с ключем мандолинистка", text_shifrkey, file=file_for_write)
